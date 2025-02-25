@@ -1,0 +1,32 @@
+version: "3.8"
+
+x-base: &base
+  restart: unless-stopped
+  env_file: .env
+
+services:
+  app:
+    <<: *base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .env:/app/.env
+    depends_on:
+      - selenium
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - SELENIUM_URL=${SELENIUM_URL}
+
+  selenium:
+    <<: *base
+    image: selenium/standalone-chrome:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    command: ["/bin/sh", "-c", "pkill -9 chrome || true && /opt/bin/entry_point.sh"]
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+    environment:
+      - SE_NODE_MAX_SESSIONS=${SE_NODE_MAX_SESSIONS}
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=${SE_NODE_OVERRIDE_MAX_SESSIONS}
