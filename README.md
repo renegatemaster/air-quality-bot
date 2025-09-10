@@ -1,11 +1,15 @@
 # Air quality bot
 
+## Stack
+- Kotlin
+- Docker
+- Selenium
+
 ## About
 
 This is my first project in Kotlin.<br>
-It's a bot for Telegram that gets a location and sends a picture<br>
-with the air quality in that area. It is not a commercial project<br>
-and is made just for practice.<br>
+It's a bot for Telegram that gets a location and sends a picture with the air quality in that area.<br>
+It is not a commercial project and is made just for practice.<br>
 Inspired by the beautiful city of Almaty, Kazakhstan.
 
 ## Deploy
@@ -21,3 +25,4 @@ git clone git@github.com:renegatemaster/air-quality-bot.git
 docker compose -f docker compose up -d
 ```
 4. You are magnificent! Try sending your telegram bot a location.
+
